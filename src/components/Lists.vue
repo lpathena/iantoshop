@@ -11,13 +11,7 @@ import Items from "./Items";
 export default {
   name: "Lists",
   components: {Items},
-  data(){
-    return {
-      todos:[
-        {id:'001',name:'eating',isok:false}
-      ]
-    }
-  },
+  props:['todos'],
 }
 </script>
 

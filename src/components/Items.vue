@@ -1,7 +1,7 @@
 <template>
   <li>
     <label>
-      <input type="checkbox" :checked="todo.isok"/>
+      <input type="checkbox" :checked="todo.done"/>
       <span>{{ todo.name }}</span>
     </label>
   </li>
