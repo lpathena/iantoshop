@@ -2,8 +2,8 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
     <MyHeader :addAnItem="addAnItem"/>
-    <Lists :todos="todos" :changeStatus="changeStatus"/>
-    <MyFooter/>
+    <Lists :todos="todos" :changeStatus="changeStatus" :deleteTodoObj="deleteTodoObj"/>
+    <MyFooter :todos="todos" :selectAllOrNot="selectAllOrNot" :deleteAllCompletedItems="deleteAllCompletedItems"/>
   </div>
 </template>
 
@@ -33,6 +33,19 @@ export default {
       this.todos.forEach((todo)=>{
         if(todo.id === id) todo.done = !todo.done
       })
+    },
+    deleteTodoObj(id) {
+      // this.todos = this.todos.filter( (todo) => {
+      //   return todo.id !== id;
+      // })
+      //精简后
+      this.todos = this.todos.filter( todo => todo.id !== id)
+    },
+    selectAllOrNot(status){
+      this.todos.forEach( todo => todo.done = status)
+    },
+    deleteAllCompletedItems(){
+      this.todos = this.todos.filter( todo => !todo.done)
     }
   }
 }
