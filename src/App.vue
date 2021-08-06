@@ -2,7 +2,7 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
     <MyHeader :addAnItem="addAnItem"/>
-    <Lists :todos="todos" :changeStatus="changeStatus"/>
+    <Lists :todos="todos"/>
     <MyFooter/>
   </div>
 </template>
@@ -28,11 +28,6 @@ export default {
   methods:{
     addAnItem(todoObj){
       this.todos.unshift(todoObj)
-    },
-    changeStatus(id){
-      this.todos.forEach((todo)=>{
-        if(todo.id === id) todo.done = !todo.done
-      })
     }
   }
 }
