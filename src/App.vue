@@ -4,9 +4,9 @@
 <!--    <MyHeader :addAnItem="addAnItem" v-on:laungh="testAlert"/>-->
 <!--    <MyHeader :addAnItem="addAnItem" @laungh="testAlert"/>-->
     <!--    <MyHeader :addAnItem="addAnItem" @laungh.once="testAlert"/>-->
-    <MyHeader :addAnItem="addAnItem" ref="MyHeader"/>
-    <Lists :todos="todos" :changeStatus="changeStatus" :deleteTodoObj="deleteTodoObj"/>
-    <MyFooter :todos="todos" :selectAllOrNot="selectAllOrNot" :deleteAllCompletedItems="deleteAllCompletedItems"/>
+    <MyHeader @addAnItem="addAnItem" ref="MyHeader"/>
+    <Lists :todos="todos"/>
+    <MyFooter :todos="todos" @selectAllOrNot="selectAllOrNot" @deleteAllCompletedItems="deleteAllCompletedItems"/>
   </div>
 </template>
 
@@ -56,6 +56,12 @@ export default {
   mounted() {
     this.$refs.MyHeader.$on("languh",this.testAlert)
     this.$refs.MyHeader.$once("languh",this.testAlert)
+    this.$bus.$on('changeStatus',this.changeStatus)
+    this.$bus.$on('deleteTodoObj',this.deleteTodoObj)
+  },
+  beforeDestroy() {
+    this.$bus.$off('changeStatus')
+    this.$bus.$off('deleteTodoObj')
   },
   watch:{
     todos:{

@@ -11,15 +11,15 @@
 <script>
 export default {
   name: "Items",
-  props:['todo','changeStatus','deleteTodoObj'],
+  props:['todo'],
   methods:{
     handleCheck(id){
       // console.log('@',id)
-      this.changeStatus(id)
+      this.$bus.$emit('changeStatus',id)
     },
     deleteTodoObjOnly(id){
       if(confirm('确定删除吗？')){
-        this.deleteTodoObj(id)
+        this.$bus.$emit('deleteTodoObj',id)
       }
     },
   },

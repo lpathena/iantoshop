@@ -14,7 +14,7 @@
 <script>
 export default {
   name: "MyFooter",
-  props:['todos','selectAllOrNot','deleteAllCompletedItems'],
+  props:['todos'],
   computed:{
     //法1
     // isAll(){
@@ -25,7 +25,7 @@ export default {
         return this.doneTotal === this.total && this.total > 0
       },
       set(value){
-        this.selectAllOrNot(value)
+        this.$emit('selectAllOrNot',value)
       }
     },
     total(){
@@ -46,7 +46,7 @@ export default {
   // }
   methods:{
     clearCompletedItems(){
-      this.deleteAllCompletedItems()
+      this.$emit('deleteAllCompletedItems')
     }
   }
 }

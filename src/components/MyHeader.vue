@@ -19,14 +19,11 @@ export default {
   },
   methods:{
     add(){
-      // add(e){
       if(!this.title.trim()){
         return alert('输入不能为空');
       }
       const todoObj = {id:nanoid(), name: this.title, done: false}
-      // const todoObj = {id:nanoid(), name: e.target.value, done: false}
-      this.addAnItem(todoObj)
-      // e.target.value = ''
+      this.$emit('addAnItem',todoObj)
       this.title = ''
     },
     testWindows(){
@@ -38,7 +35,6 @@ export default {
       // this.$off()
     }
   },
-  props:['addAnItem'],
 }
 </script>
 
