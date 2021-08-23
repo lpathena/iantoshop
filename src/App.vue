@@ -1,7 +1,10 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <MyHeader :addAnItem="addAnItem"/>
+<!--    <MyHeader :addAnItem="addAnItem" v-on:laungh="testAlert"/>-->
+<!--    <MyHeader :addAnItem="addAnItem" @laungh="testAlert"/>-->
+    <!--    <MyHeader :addAnItem="addAnItem" @laungh.once="testAlert"/>-->
+    <MyHeader :addAnItem="addAnItem" ref="MyHeader"/>
     <Lists :todos="todos" :changeStatus="changeStatus" :deleteTodoObj="deleteTodoObj"/>
     <MyFooter :todos="todos" :selectAllOrNot="selectAllOrNot" :deleteAllCompletedItems="deleteAllCompletedItems"/>
   </div>
@@ -44,7 +47,15 @@ export default {
     },
     deleteAllCompletedItems(){
       this.todos = this.todos.filter( todo => !todo.done)
+    },
+    testAlert(name,...params){
+      console.log('@','调用了')
+      alert('弹出窗口呢'+name+params)
     }
+  },
+  mounted() {
+    this.$refs.MyHeader.$on("languh",this.testAlert)
+    this.$refs.MyHeader.$once("languh",this.testAlert)
   },
   watch:{
     todos:{
